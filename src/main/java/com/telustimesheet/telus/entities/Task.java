@@ -1,6 +1,10 @@
 package com.telustimesheet.telus.entities;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,6 +12,8 @@ import java.sql.Date;
 
 @Entity
 @Data
+@AllArgsConstructor
+@ToString(callSuper = true)
 @Table(name = "TASKS")
 public class Task implements Serializable {
     @Id
@@ -19,6 +25,11 @@ public class Task implements Serializable {
 
     @Column(name = "date")
     private Date date;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_user", updatable = false, referencedColumnName = "IDUSER")
+    @JsonIgnoreProperties(value = "tasks")
+    private User user;
 
     public Task(Long id, float duration, Date date){
         super();

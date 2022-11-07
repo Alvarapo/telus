@@ -1,13 +1,13 @@
 package com.telustimesheet.telus.services;
 
+import com.telustimesheet.telus.dto.TaskDTO;
 import com.telustimesheet.telus.exceptions.TelusException;
-import com.telustimesheet.telus.json.TaskRest;
 
 import java.sql.Date;
 import java.util.List;
 
 public interface TaskService {
-    List<TaskRest> getTasks() throws TelusException;
+    List<TaskDTO> getTasks() throws TelusException;
 
     Float getTotalDurationByDate(Date date) throws TelusException;
 
@@ -19,9 +19,9 @@ public interface TaskService {
 
     Float getTotalIRPFByMonth(int month) throws TelusException;
 
-    TaskRest addTask(float duration, Date date) throws TelusException;
+    TaskDTO addTask(float duration, Date date) throws TelusException;
 
-    TaskRest deleteTask(Long id) throws TelusException;
+    TaskDTO deleteTask(Long id) throws TelusException;
 
-    List<TaskRest> getTasksByDate(Date date) throws TelusException;
+    List<TaskDTO> getTasksByDate(Date date) throws TelusException;
 }

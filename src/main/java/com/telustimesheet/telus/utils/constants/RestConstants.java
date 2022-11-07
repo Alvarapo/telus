@@ -5,11 +5,14 @@ public class RestConstants {
     public static final String APPLICATION_NAME = "/telus";
     public static final String API_VERSION_1 = "/v1";
     public static final String SUCCESS = "Success";
+    public static final String REGISTER_SUCCESS = "¡Registro realizado con éxito!";
 
 
 
 
     public static final String RESOURCE_TASKS = "/tasks";
+    public static final String RESOURCE_USERS = "/users";
+    public static final String RESOURCE_SING_IN = "/register";
     public static final String RESOURCE_DATE= "/date/{date}";
     public static final String RESOURCE_ID= "/id/{id}";
     public static final String RESOURCE_DURATION= "/duration/{duration}";

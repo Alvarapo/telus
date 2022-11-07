@@ -1,10 +1,10 @@
 package com.telustimesheet.telus.services.impl;
 
+import com.telustimesheet.telus.dto.TaskDTO;
 import com.telustimesheet.telus.entities.Task;
 import com.telustimesheet.telus.exceptions.NotFoundException;
 import com.telustimesheet.telus.exceptions.NotValidMonth;
 import com.telustimesheet.telus.exceptions.TelusException;
-import com.telustimesheet.telus.json.TaskRest;
 import com.telustimesheet.telus.repositories.TaskRepository;
 import com.telustimesheet.telus.services.TaskService;
 import org.modelmapper.ModelMapper;
@@ -20,13 +20,13 @@ import java.util.stream.Collectors;
 public class TaskServiceImpl implements TaskService {
 
     @Autowired
-    private TaskRepository taskRepository;
+    transient TaskRepository taskRepository;
 
     private ModelMapper modelMapper = new ModelMapper();
     @Override
-    public List<TaskRest> getTasks() throws TelusException {
+    public List<TaskDTO> getTasks() throws TelusException {
         try {
-            return taskRepository.findAll().stream().map(task -> modelMapper.map(task, TaskRest.class))
+            return taskRepository.findAll().stream().map(task -> modelMapper.map(task, TaskDTO.class))
                     .collect(Collectors.toList());
         } catch (EntityNotFoundException entityNotFoundException) {
             throw new NotFoundException(entityNotFoundException.getMessage());
@@ -80,33 +80,33 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public TaskRest addTask(float duration, Date date) throws TelusException {
+    public TaskDTO addTask(float duration, Date date) throws TelusException {
         try {
             return modelMapper.map(
                     taskRepository.save(modelMapper.map(new Task(duration, date), Task.class)),
-                    TaskRest.class);
+                    TaskDTO.class);
         } catch (EntityNotFoundException entityNotFoundException) {
             throw new NotFoundException(entityNotFoundException.getMessage());
         }
     }
 
     @Override
-    public TaskRest deleteTask(Long id) throws TelusException {
+    public TaskDTO deleteTask(Long id) throws TelusException {
         try {
             Task delete_task = modelMapper.map(taskRepository.findById(id), Task.class);
-            TaskRest taskRest = new TaskRest(delete_task.getDuration(), delete_task.getDate());
+            TaskDTO taskDTO = new TaskDTO(delete_task.getDuration(), delete_task.getDate());
 
             taskRepository.deleteById(id);
-            return taskRest;
+            return taskDTO;
         } catch (EntityNotFoundException entityNotFoundException) {
             throw new NotFoundException(entityNotFoundException.getMessage());
         }
     }
 
     @Override
-    public List<TaskRest> getTasksByDate(Date date) throws TelusException {
+    public List<TaskDTO> getTasksByDate(Date date) throws TelusException {
         try {
-            return taskRepository.findByDate(date).stream().map(task -> modelMapper.map(task, TaskRest.class))
+            return taskRepository.findByDate(date).stream().map(task -> modelMapper.map(task, TaskDTO.class))
                     .collect(Collectors.toList());
         } catch (EntityNotFoundException entityNotFoundException) {
             throw new NotFoundException(entityNotFoundException.getMessage());

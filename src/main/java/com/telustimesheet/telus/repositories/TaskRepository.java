@@ -1,16 +1,14 @@
 package com.telustimesheet.telus.repositories;
 
 import com.telustimesheet.telus.entities.Task;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.telustimesheet.telus.repositories.general.ExtendedJpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
 import java.util.List;
 
-@Repository
-public interface TaskRepository extends JpaRepository<Task, Long> {
+public interface TaskRepository extends ExtendedJpaRepository<Task> {
 
     //@Transactional(readOnly = true)
     @Query(value = "SELECT SUM(t.duration) FROM TASKS t WHERE t.DATE = :date",

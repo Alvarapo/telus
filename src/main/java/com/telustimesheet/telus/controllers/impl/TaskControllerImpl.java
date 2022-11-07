@@ -2,8 +2,8 @@ package com.telustimesheet.telus.controllers.impl;
 
 import com.telustimesheet.telus.config.responses.TelusResponse;
 import com.telustimesheet.telus.controllers.TaskController;
+import com.telustimesheet.telus.dto.TaskDTO;
 import com.telustimesheet.telus.exceptions.TelusException;
-import com.telustimesheet.telus.json.TaskRest;
 import com.telustimesheet.telus.services.TaskService;
 import com.telustimesheet.telus.utils.constants.CommonConstants;
 import com.telustimesheet.telus.utils.constants.RestConstants;
@@ -24,7 +24,7 @@ public class TaskControllerImpl implements TaskController {
     @Override
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public TelusResponse<List<TaskRest>> getTasks() throws TelusException {
+    public TelusResponse<List<TaskDTO>> getTasks() throws TelusException {
         return new TelusResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK), CommonConstants.OK,
                 taskService.getTasks());
     }
@@ -32,7 +32,7 @@ public class TaskControllerImpl implements TaskController {
     @Override
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = RestConstants.RESOURCE_TASKS +  RestConstants.RESOURCE_DATE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public TelusResponse<List<TaskRest>> getTasksByDate(@PathVariable Date date) throws TelusException {
+    public TelusResponse<List<TaskDTO>> getTasksByDate(@PathVariable Date date) throws TelusException {
         return new TelusResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK), CommonConstants.OK,
                 taskService.getTasksByDate(date));
     }
@@ -80,7 +80,7 @@ public class TaskControllerImpl implements TaskController {
     @Override
     @ResponseStatus(HttpStatus.OK)
     @PostMapping(value = RestConstants.RESOURCE_DATE + RestConstants.RESOURCE_DURATION, produces = MediaType.APPLICATION_JSON_VALUE)
-    public TelusResponse<TaskRest> addTask(@PathVariable float duration, @PathVariable Date date) throws TelusException {
+    public TelusResponse<TaskDTO> addTask(@PathVariable float duration, @PathVariable Date date) throws TelusException {
         return new TelusResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK), CommonConstants.OK,
                 taskService.addTask(duration, date));
     }
@@ -88,7 +88,7 @@ public class TaskControllerImpl implements TaskController {
     @Override
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping(value = RestConstants.RESOURCE_ID, produces = MediaType.APPLICATION_JSON_VALUE)
-    public TelusResponse<TaskRest> deleteTask(@PathVariable Long id) throws TelusException {
+    public TelusResponse<TaskDTO> deleteTask(@PathVariable Long id) throws TelusException {
         return new TelusResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK), CommonConstants.OK,
                 taskService.deleteTask(id));
     }
