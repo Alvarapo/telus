@@ -14,7 +14,7 @@ import java.io.Serializable;
 @ToString(callSuper = true)
 @Entity
 @Table(name="ROLES")
-public class Rol implements Serializable {
+public class RolEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id

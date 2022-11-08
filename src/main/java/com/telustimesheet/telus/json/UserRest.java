@@ -14,5 +14,5 @@ public class UserRest implements Serializable {
     private String password;
     private String name;
     private String email;
-    //private List<Rol> roles;
+    //private List<RolEntity> roles;
 }

@@ -15,7 +15,7 @@ import java.sql.Date;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @Table(name = "TASKS")
-public class Task implements Serializable {
+public class TaskEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private @Getter Long id;
@@ -29,23 +29,23 @@ public class Task implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user", updatable = false, referencedColumnName = "IDUSER")
     @JsonIgnoreProperties(value = "tasks")
-    private User user;
+    private UserEntity userEntity;
 
-    public Task(Long id, float duration, Date date){
+    public TaskEntity(Long id, float duration, Date date){
         super();
         this.id = id;
         this.duration = duration;
         this.date = date;
     }
 
-    public Task(float duration, Date date){
+    public TaskEntity(float duration, Date date){
         super();
         this.duration = duration;
         this.date = date;
     }
 
 
-    public Task(){
+    public TaskEntity(){
         super();
     }
 }

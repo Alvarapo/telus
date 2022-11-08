@@ -15,7 +15,7 @@ import java.util.List;
 @ToString(callSuper = true)
 @Entity
 @Table(name="USERS")
-public class User implements Serializable {
+public class UserEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -37,13 +37,13 @@ public class User implements Serializable {
     private String email;
 
 
-    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy= "userEntity", fetch = FetchType.LAZY)
 
-    private List<Task> tasks;
+    private List<TaskEntity> taskEntities;
 
-    /*@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "USERS_ROLES",
             joinColumns=@JoinColumn(name="USER_ID"),
             inverseJoinColumns=@JoinColumn(name="ROLE_ID"))
-    private List<Rol> roles;*/
+    private List<RolEntity> roles;
 }

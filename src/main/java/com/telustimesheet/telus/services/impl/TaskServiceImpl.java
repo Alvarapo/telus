@@ -1,7 +1,7 @@
 package com.telustimesheet.telus.services.impl;
 
 import com.telustimesheet.telus.dto.TaskDTO;
-import com.telustimesheet.telus.entities.Task;
+import com.telustimesheet.telus.entities.TaskEntity;
 import com.telustimesheet.telus.exceptions.NotFoundException;
 import com.telustimesheet.telus.exceptions.NotValidMonth;
 import com.telustimesheet.telus.exceptions.TelusException;
@@ -26,7 +26,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskDTO> getTasks() throws TelusException {
         try {
-            return taskRepository.findAll().stream().map(task -> modelMapper.map(task, TaskDTO.class))
+            return taskRepository.findAll().stream().map(taskEntity -> modelMapper.map(taskEntity, TaskDTO.class))
                     .collect(Collectors.toList());
         } catch (EntityNotFoundException entityNotFoundException) {
             throw new NotFoundException(entityNotFoundException.getMessage());
@@ -83,7 +83,7 @@ public class TaskServiceImpl implements TaskService {
     public TaskDTO addTask(float duration, Date date) throws TelusException {
         try {
             return modelMapper.map(
-                    taskRepository.save(modelMapper.map(new Task(duration, date), Task.class)),
+                    taskRepository.save(modelMapper.map(new TaskEntity(duration, date), TaskEntity.class)),
                     TaskDTO.class);
         } catch (EntityNotFoundException entityNotFoundException) {
             throw new NotFoundException(entityNotFoundException.getMessage());
@@ -93,8 +93,8 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public TaskDTO deleteTask(Long id) throws TelusException {
         try {
-            Task delete_task = modelMapper.map(taskRepository.findById(id), Task.class);
-            TaskDTO taskDTO = new TaskDTO(delete_task.getDuration(), delete_task.getDate());
+            TaskEntity delete_taskEntity = modelMapper.map(taskRepository.findById(id), TaskEntity.class);
+            TaskDTO taskDTO = new TaskDTO(delete_taskEntity.getDuration(), delete_taskEntity.getDate());
 
             taskRepository.deleteById(id);
             return taskDTO;
@@ -106,7 +106,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskDTO> getTasksByDate(Date date) throws TelusException {
         try {
-            return taskRepository.findByDate(date).stream().map(task -> modelMapper.map(task, TaskDTO.class))
+            return taskRepository.findByDate(date).stream().map(taskEntity -> modelMapper.map(taskEntity, TaskDTO.class))
                     .collect(Collectors.toList());
         } catch (EntityNotFoundException entityNotFoundException) {
             throw new NotFoundException(entityNotFoundException.getMessage());

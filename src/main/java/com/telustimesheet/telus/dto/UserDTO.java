@@ -6,7 +6,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
-import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = false, doNotUseGetters = true)
@@ -22,6 +21,6 @@ public class UserDTO  implements BaseDTO{
     private String name;
 
     private String email;
-    private List<TaskDTO> tasks;
+    //private List<TaskDTO> tasks;
 
 }

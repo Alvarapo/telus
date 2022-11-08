@@ -27,7 +27,6 @@ public class RestConstants {
     public static final String RESOURCE_TOTAL_PAYROLL = "/total-payroll";
     public static final String RESOURCE_TOTAL_IRPF = "/total-irpf";
 
-
     private RestConstants() {
         throw new IllegalStateException("Utility Class");
     }

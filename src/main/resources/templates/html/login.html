@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport"
+		content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/loing-and-singup.css"
+		th:href="@{/css/loing-and-singup.css}">
+	<link rel="stylesheet" type="text/css" href="../static/css/estilos.css" th:href="@{/css/bootstrap.css}">
+	<link rel="stylesheet" type="text/css" href="../static/css/estilos.css" th:href="@{/css/estilos.css}">
+	<link rel="icon" type="image/png" href="../static/img/favicon-32x32.png" th:href="@{img/favicon-32x32.png}">
+
+</head>
+
+<body>
+	<!--NAVEGACION -->
+	<header class="main-header">
+		<div class="container">
+			<div class="main-header__container">
+				<h1 class="main-header__title">Telus International Time Report</h1>
+				<span class="icon-menu" id="btn-menu"><i class="fas fa-bars"></i></span>
+				<!--  icono menu, el id es para cuando se haga el js-->
+			</div>
+		</div>
+	</header>
+	<main class="main">
+		<div class="container">
+			<div th:if="${param.error}" class="alert alert-danger mb-3">Credenciales incorrectas
+
+			</div>
+
+			<form class="formulario" th:action="@{/auth/login-post}" th:object="${user}" method="post">
+				<h1>Iniciar Sesión</h1>
+				<div class="contenedor">
+					<div class="input-contenedor">
+						<i class="fas fa-envelope icon"></i>
+						<input name="username" type="text" placeholder="Correo Electrónico">
+					</div>
+					<div class="input-contenedor">
+						<i class="fas fa-key icon"></i>
+						<input type="password" name="password" placeholder="Contraseña">
+					</div>
+
+					<input type="submit" value="Iniciar Sesión" class="button">
+					<p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
+					<p>¿No tienes una cuenta? <a class="link" href="#" th:href="@{/auth/registro}">Regístrate </a></p>
+				</div>
+
+			</form>
+			<div clas="row justify-content-center">
+				<div class="col-md-4 mt-5">
+					<div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
+				</div>
+			</div>
+			<div class="back__container">
+				<form method="get" action="/home">
+					<input type="submit" value="Volver al Inicio" class="button">
+				</form>
+			</div>
+
+		</div>
+	</main>
+
+	<script th:src="@{/js/menu.js}" src=".../static/js/menu.js"></script>
+</body>
+<footer class="main-footer">
+	<div class="footer__bottom">
+		<div class="footer__section">
+			<h2 class="footer__title">Sobre Nosotros</h2>
+			<p class="footer__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, quaerat quod,
+				voluptas nemo porro sint nostrum, vero reprehenderit in placeat, pariatur enim ab deserunt ut minima
+				eos vitae! Ipsa, beatae?</p>
+		</div>
+		<p class="copy">© 2022 Telus Timesheet Report. Todos los derechos reservados | Diseñada por Álvaro Rofa Aranda
+		</p>
+	</div>
+
+</footer>
+
+</html>

@@ -1,6 +1,6 @@
 package com.telustimesheet.telus.repositories;
 
-import com.telustimesheet.telus.entities.Task;
+import com.telustimesheet.telus.entities.TaskEntity;
 import com.telustimesheet.telus.repositories.general.ExtendedJpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.sql.Date;
 import java.util.List;
 
-public interface TaskRepository extends ExtendedJpaRepository<Task> {
+public interface TaskRepository extends ExtendedJpaRepository<TaskEntity> {
 
     //@Transactional(readOnly = true)
     @Query(value = "SELECT SUM(t.duration) FROM TASKS t WHERE t.DATE = :date",
@@ -34,5 +34,5 @@ public interface TaskRepository extends ExtendedJpaRepository<Task> {
     Float getTotalPayrollByMonth(@Param("month") int month);
     /*@Query(value = "SELECT * FROM TASKS WHERE DATE = :date;",
             nativeQuery  = true)*/
-    List<Task> findByDate(/*@Param("date")*/ Date date);
+    List<TaskEntity> findByDate(/*@Param("date")*/ Date date);
 }
