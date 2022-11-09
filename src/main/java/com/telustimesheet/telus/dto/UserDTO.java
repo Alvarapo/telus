@@ -1,11 +1,14 @@
 package com.telustimesheet.telus.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.telustimesheet.telus.entities.RolEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = false, doNotUseGetters = true)
@@ -21,6 +24,7 @@ public class UserDTO  implements BaseDTO{
     private String name;
 
     private String email;
-    //private List<TaskDTO> tasks;
 
+    @JsonIgnoreProperties(value="users")
+    private List<RolEntity> roles;
 }

@@ -9,10 +9,18 @@ public class RestConstants {
 
 
 
+    //GENERALES
 
+    public static final String RESOURCE_AUTH = "/auth";
     public static final String RESOURCE_TASKS = "/tasks";
     public static final String RESOURCE_USERS = "/users";
-    public static final String RESOURCE_SING_IN = "/register";
+    public static final String RESOURCE_SING_IN = "/sing-in";
+    public static final String RESOURCE_LOGIN = "/login";
+
+
+
+
+
     public static final String RESOURCE_DATE= "/date/{date}";
     public static final String RESOURCE_ID= "/id/{id}";
     public static final String RESOURCE_DURATION= "/duration/{duration}";

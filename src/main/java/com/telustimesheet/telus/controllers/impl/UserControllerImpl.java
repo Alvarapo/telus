@@ -28,17 +28,15 @@ public class UserControllerImpl implements UserController {
 
 
     @Override
-    @PostMapping(RestConstants.RESOURCE_SING_IN)
+    @PostMapping(value = RestConstants.RESOURCE_SING_IN)
     public String singInUser(UserDTO userDTO, RedirectAttributes flash) {
         try {
             UserDTO newUserDTO = userService.singInUser(userDTO);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         flash.addFlashAttribute(RestConstants.SUCCESS, RestConstants.REGISTER_SUCCESS);
         return RedirectConstant.REDIRECT_LOGIN;
-
     }
 
     @Override

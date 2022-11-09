@@ -37,9 +37,8 @@ public class UserEntity implements Serializable {
     private String email;
 
 
-    @OneToMany(mappedBy= "userEntity", fetch = FetchType.LAZY)
-
-    private List<TaskEntity> taskEntities;
+    @OneToMany(mappedBy= "user", fetch = FetchType.LAZY)
+    private List<TaskEntity> tasks;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "USERS_ROLES",

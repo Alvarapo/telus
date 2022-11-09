@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport"
+		content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/loing-and-singup.css"
+		th:href="@{/css/loing-and-singup.css}">
+
+	<link rel="stylesheet" type="text/css" href="../static/css/estilos.css" th:href="@{/css/estilos.css}">
+	<link rel="icon" type="image/png" href="../static/img/favicon-32x32.png" th:href="@{/img/favicon-32x32.png}">
+
+
+</head>
+
+<body>
+	<header class="main-header">
+		<div class="container">
+			<div class="main-header__container">
+				<h1 class="main-header__title">Telus International Time Report</h1>
+			</div>
+		</div>
+	</header>
+
+	<main class="main">
+		<div class="container">
+			<form id="formulario" class="formulario" th:action="@{/users/sing-in}" th:object="${userDTO}"
+				method="post">
+				<h1>Regístrate</h1>
+				<div class="contenedor">
+					<div class="input-contenedor" id="grupo__username">
+						<i class="fas fa-user icon"></i>
+						<input class="formulario__input" id="username" name="username"
+							th:field="*{username}" th:value="*{username}" type="text"
+							placeholder="Usuario">
+						<p class="formulario__input-error">El nombre solo puede tener letras, espacios y acentos</p>
+					</div>
+
+					<div class="input-contenedor" id="grupo__name">
+						<i class="fas fa-user icon"></i>
+						<input class="formulario__input" id="name" name="name"
+							   th:field="*{name}" th:value="*{name}" type="text"
+							   placeholder="Nombre Completo">
+						<p class="formulario__input-error">El nombre solo puede tener letras, espacios y acentos</p>
+					</div>
+
+					<div class="input-contenedor" id="grupo__email">
+						<i class="fas fa-envelope icon"></i>
+						<input class="formulario__input" id="email" name="email" th:field="*{email}" th:value="*{email}"
+							type="text" placeholder="Correo Electronico">
+						<p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos,
+							guiones y guion bajo.</p>
+					</div>
+					<div class="input-contenedor" id="grupo__password">
+						<i class="fas fa-key icon"></i>
+						<input class="formulario__input" id="password" name="password" th:field="*{password}"
+							th:value="*{password}" type="password" placeholder="Contraseña">
+						<p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+					</div>
+					<div class="input-contenedor" id="grupo__password2">
+						<i class="fas fa-key icon"></i>
+						<input name="password2" id="password2" type="password" placeholder="Repetir Contraseña">
+						<p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
+					</div>
+
+					<input id='sing-in' type="submit" value="Registrate" class="button" disabled=true>
+					<p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
+					<p>¿Ya tienes una cuenta?<a class="link" href="#" th:href="@{/auth/login}">Iniciar Sesion</a></p>
+				</div>
+			</form>
+			<div class="back__container">
+				<form method="get" action="/home">
+					<input type="submit" value="Volver al Inicio" class="button">
+				</form>
+			</div>
+		</div>
+	</main>
+
+
+	<script th:src="@{/js/formulario.js}" src="../static/js/formulario.js"></script>
+</body>
+<footer class="main-footer">
+	<div class="footer__bottom">
+		<div class="footer__section">
+			<h2 class="footer__title">Sobre Nosotros</h2>
+			<p class="footer__txt">Esta aplicación se ha diseñado sin ánimo de lucro, para registrar su trabajo diariamente
+			y generar un reporte anual de estas.</p>
+		</div>
+		<p class="copy">© 2022 Telus Timesheet Report. Todos los derechos reservados | Diseñada por Álvaro Rofa Aranda
+		</p>
+	</div>
+
+</footer>
+
+
+</html>

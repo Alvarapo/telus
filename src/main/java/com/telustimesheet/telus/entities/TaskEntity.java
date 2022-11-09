@@ -29,7 +29,7 @@ public class TaskEntity implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user", updatable = false, referencedColumnName = "IDUSER")
     @JsonIgnoreProperties(value = "tasks")
-    private UserEntity userEntity;
+    private UserEntity user;
 
     public TaskEntity(Long id, float duration, Date date){
         super();

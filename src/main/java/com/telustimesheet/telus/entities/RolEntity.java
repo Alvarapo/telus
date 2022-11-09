@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -27,4 +28,7 @@ public class RolEntity implements Serializable {
 
     @Column(name = "DESCRIPTION")
     private String description;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
+    private List<UserEntity> users;
 }
