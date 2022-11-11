@@ -35,7 +35,7 @@ public class UserControllerImpl implements UserController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        flash.addFlashAttribute(RestConstants.SUCCESS, RestConstants.REGISTER_SUCCESS);
+        flash.addFlashAttribute("success", "¡Registro realizado con éxito!");
         return RedirectConstant.REDIRECT_LOGIN;
     }
 

@@ -52,4 +52,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll().stream().map(users -> modelMapper.map(users, UserDTO.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public UserDTO findByEmail(String username) throws TelusException {
+        return modelMapper.map(userRepository.findByEmail(username), UserDTO.class);
+    }
 }

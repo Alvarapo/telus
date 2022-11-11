@@ -270,18 +270,18 @@ img {
 
 
 
-/*ESTILO PRODUCTOS*/
+/*ESTILO TAREAS*/
 
 
 
-.container-products {
+.container-tasks {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
 
 }
 
-.product {
+.task {
     border: 1px solid black;
     text-align: center;
     position: relative;
@@ -289,52 +289,13 @@ img {
 }
 
 
-.product .product__img:hover {
-    transform: scale(1.06);
-    cursor: pointer;
-    display: block;
 
-}
-
-
-.product__new {
+.task__new {
     background: #FF3B53;
     padding: 5px 0px;
     position: relative;
     color: white;
     border: 2px solid black;
-}
-
-.product__img {
-    height: 150px;
-    object-fit: cover;
-    display: block;
-    border: 2px solid black;
-
-}
-
-.product__title {
-    text-align: center;
-}
-
-.product__price {
-    color: #FF4E00;
-    font-weight: bold;
-    font-size-adjust: auto;
-}
-
-.product__icon {
-    display: block;
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-.product__icon:hover {
-    color: #FF4E00;
-}
-
-.price_and_cart {
-    padding: 10px 0px;
 }
 
 /*ESTILOS SOBRE NOSOTROS*/
@@ -436,12 +397,12 @@ img {
      color: white;
 }
 
-.form_type_product{
+.form_type_task{
 	padding: 10px;
 	
 }
 
-.type__product{
+.type__task{
 
 	display: flex;
 }
@@ -529,14 +490,11 @@ img {
         color: white;
     }
 
-    .container-products {
+    .container-tasks {
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 15px;
     }
 
-    .product__img {
-        height: 250px;
-    }
 
     .container__testimonials {
         font-size: 1.3em;
@@ -577,9 +535,6 @@ img {
         font-size: 1.3em;
     }
 
-    .product__img {
-        height: 250px;
-    }
 
     .slider {
         height: 500px;
@@ -594,9 +549,6 @@ img {
         width: 1000px;
     }
 
-    .product__img {
-        height: 250px;
-    }
 
     .main-header__container:nth-child(3) {
         padding-left: 150px;
@@ -610,9 +562,6 @@ img {
         height: 600px;
     }
 
-    .product__img {
-        height: 200px;
-    }
 }
 
 @media screen and (min-width:1900px) {
@@ -620,9 +569,6 @@ img {
         width: 1800px;
     }
 
-    .product__img {
-        height: 450px;
-    }
 
     .main-header__container:nth-child(3) {
         padding-left: 350px;
@@ -634,10 +580,5 @@ img {
 
     .slider {
         height: 400px;
-    }
-
-
-    .product__img {
-        height: 200px;
     }
 }

@@ -9,4 +9,6 @@ public interface UserService {
     UserDTO singInUser(UserDTO userDTO) throws TelusException;
 
     List<UserDTO> getAllUsers() throws TelusException;
+
+    UserDTO findByEmail(String username) throws TelusException;
 }

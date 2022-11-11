@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head charset="UTF-8">
+	<title>Telus International Time Report</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,
+    maximun-scale=1.0, minimun-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="../static/css/estilos.css" th:href="@{/css/estilos.css}">
+	<link rel="stylesheet" type="text/css" href="../static/css/estilos.css" th:href="@{/css/bootstrap.css}">
+
+	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+	<link rel="icon" type="image/png" href="../static/img/favicon-32x32.png" th:href="@{img/favicon-32x32.png}">
+
+</head>
+
+<body onload="invisible()">
+	<!--NAVEGACION -->
+	<header class="main-header">
+		<div class="container container--flex">
+			<div class="main-header__container">
+				<h1 class="main-header__title">Telus International Time Report</h1>
+				<span class="icon-menu" id="btn-menu"><i class="fas fa-bars"></i></span>
+				<!--  icono menu, el id es para cuando se haga el js-->
+
+				<nav class="main-nav" id="main-nav">
+					<ul id="menu" class="menu">
+						<li class="menu__item"><a href="#" th:href="@{/}" class="menu__link" style="background:#333;">HOME</a></li>
+						<li class="menu__item"><a href="#" th:href="@{/tasks}" class="menu__link">TAREAS</a>
+						</li>
+
+						<span th:if="${session.user!=null}">
+							<li id="new__task" class="menu__item"><a href="#" th:href="@{/new-task}"
+									class="menu__link">AÑADIR
+									TAREA</a></li>
+						</span>
+
+
+						<li class="menu__item"><a href="" class="menu__link">CONTACTO</a></li>
+						<span th:if="${session.user==null}">
+							<li class="menu__item"><a href="#" th:href="@{/auth/login}" class="menu__link">INICIO
+									SESIÓN</a></li>
+						</span>
+		
+					</ul>
+				</nav>
+			</div>
+
+			<div class="main-header__container">
+				<div class="user__container">
+					<span th:if="${session.user!=null}">
+					<form th:action="@{/logout}" method="POST">
+						<input type="submit" value="Cerrar Sesión" class="button">
+					</form>
+					<br />
+					<i class="fa-solid fa-user"> <span th:if="${session.user!=null}"> Bienvenido/a <span
+								th:text="${session.user.username}"></span></span></i>
+					</span>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<h1 class="last-mangas-title"> ÚLTIMAS TAREAS AÑADIDAS </h1>
+	<main class="main">
+		<div class="container">
+
+			<section class="container-tasks">
+				<div th:each="task : ${tasks}">
+					<div class="task">
+						<div class="task__new">Nuevo</div>
+						<div class="task__description">
+							<h4 class="product_title" th:text="${producto.nombre}">nombre del tomo</h4>
+						</div>
+						<div class="price_and_cart">
+							<span class=" product__price" th:text="${producto.precio}">14.99€</span><span
+								class="product__price">€</span>
+							<i class="product__icon fa-solid fa-star fa-2x"></i>
+
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
+
+
+	<div class="footer__bottom">
+		<div class="footer__section">
+			<h2 class="footer__title">Sobre Nosotros</h2>
+			<p class="footer__txt">Esta aplicación se ha diseñado sin ánimo de lucro, para registrar su trabajo diariamente
+				y generar un reporte anual de estas.</p>
+		</div>
+
+		<p class="copy">© 2022 Telus Timesheet Report. Todos los derechos reservados | Diseñada por Álvaro Rofa Aranda
+		</p>
+	</div>
+
+</footer>
+
+</html>

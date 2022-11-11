@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head charset="UTF-8">
+	<title>Telus International Time Report</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,
+    maximun-scale=1.0, minimun-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="../static/css/estilos.css" th:href="@{/css/estilos.css}">
+	<link rel="stylesheet" type="text/css" href="../static/css/estilos.css" th:href="@{/css/bootstrap.css}">
+
+	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+	<link rel="icon" type="image/png" href="../static/img/favicon-32x32.png" th:href="@{img/favicon-32x32.png}">
+</head>
+
+<body>
+	<!--NAVEGACION -->
+	<header class="main-header">
+		<div class="container container--flex">
+			<div class="main-header__container">
+				<h1 class="main-header__title">TODO MANGA</h1>
+				<span class="icon-menu" id="btn-menu"><i class="fas fa-bars"></i></span>
+				<!--  icono menu, el id es para cuando se haga el js-->
+
+				<nav class="main-nav" id="main-nav">
+					<ul class="menu">
+						<li class="menu__item"><a href="#" th:href="@{/}" class="menu__link">HOME</a></li>
+						<li class="menu__item"><a href="#" th:href="@{/sobreNosotros}" class="menu__link">SOBRE
+								NOSOTROS</a></li>
+						<li class="menu__item"><a href="#" th:href="@{/nuevoProducto}" class="menu__link">PRODUCTOS</a>
+						</li>
+						<li id="new__product" class="menu__item"><a href="#" th:href="@{/nuevoProducto}"
+								class="menu__link">AÑADIR
+								PRODUCTO</a></li>
+						<li class="menu__item"><a href="" class="menu__link">CONTACTO</a></li>
+						<li class="menu__item"><a href="#" th:href="@{/logout}" class="menu__link">CERRAR SESIÓN</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="main-header__container">
+				<span class="main-header__txt">Ayuda</span>
+				<p class="main-header__txt"><i class="fa-solid fa-phone-flip"></i> +34 999 999 999</p>
+			</div>
+
+			<div class="main-header__container">
+
+				<div class="user__container">
+
+					<a href="" class="main-header__btn">Mi Carrito<i class="fa-solid fa-cart-shopping"></i></a>
+					<form th:action="@{/logout}" method="POST">
+						<input type="submit" value="Cerrar Sesión" class="button">
+					</form>
+					<br />
+
+					<i class="fa-solid fa-user"> <span th:if="${session.user!=null}"> Bienvenido/a <span
+								th:text="${session.user.username}"></span></span></i>
+
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<h1 class="last-mangas-title"> ÚLTIMAS TAREAS AÑADIDAS </h1>
+	<main class="main">
+		<div class="container">
+
+			<section class="container-products">
+				<div th:each="producto : ${productos}">
+					<div class="product">
+						<div class="product__tomo"><img th:src="@{'/uploads/'+${producto.foto}}"
+								th:alt="${producto.foto}" alt="" class="product__img"></div>
+						<div class="product__new">Nuevo</div>
+						<div class="product__description">
+							<h4 class="product_title" th:text="${producto.nombre}">nombre del tomo</h4>
+						</div>
+						<div class="price_and_cart">
+							<span class=" product__price" th:text="${producto.precio}">14.99€</span><span
+								class="product__price">€</span>
+							<i class="product__icon fa-solid fa-star fa-2x"></i>
+
+						</div>
+					</div>
+				</div>
+
+			</section>
+		</div>
+	</main>
+
+	<div class="container-slider">
+		<h1 class="promos-title"> MEJORES PROMOCIONES </h1>
+		<!--probar a hacer esto con un bucle-->
+		<div class="slider" id="slider">
+			<div class="slider__section">
+				<img src="https://cdn.superaficionados.com/imagenes/descubre-los-10-mejores-animes-shounen-og.jpg">
+				<div class="slider__content">
+					<h2 class="slider__title">Mangas Shonen</h2>
+					<p class="slider__txt">Descuentos hasta del 50%</p>
+					<a href="" class="btn-shop">COMPRAR AHORA</a>
+				</div>
+			</div>
+			<div class="slider__section">
+				<img src="https://areajugones.sport.es/wp-content/uploads/2022/08/one-piece-manga-final-acto-1080x609.jpg"
+					alt="" class="slider__img">
+				<div class="slider__content">
+					<h2 class="slider__title">Especial One Piece</h2>
+					<p class="slider__txt">Edición limitadas</p>
+					<a href="" class="btn-shop">COMPRAR AHORA</a>
+				</div>
+			</div>
+			<div class="slider__section">
+				<img
+					src="https://alfabetajuega.com/hero/2022/08/Dragon-Ball-Super-ha-presentado-dos-grandes-misterios.jpg?width=768&aspect_ratio=16:9&format=nowebp">
+				<div class="slider__content">
+					<h2 class="slider__title">Especial Dragon ball</h2>
+					<p class="slider__txt">Nuevos tomos 2x1</p>
+					<a href="" class="btn-shop">COMPRAR AHORA</a>
+				</div>
+			</div>
+			<div class="slider__section">
+				<img src="https://www.industriaanimacion.com/wp-content/uploads/2022/07/anime_seinen-960x504.jpg" alt=""
+					class="slider__img">
+				<div class="slider__content">
+					<h2 class="slider__title">Mangas Seinen</h2>
+					<p class="slider__txt">Desduentos hasta del 80%</p>
+					<a href="" class="btn-shop">COMPRAR AHORA</a>
+				</div>
+			</div>
+		</div>
+		<div class="slider__btn slider__btn--right" id="btn-right">&#62;</div>
+		<div class="slider__btn slider__btn--left" id="btn-left">&#60;</div>
+	</div>
+
+
+
+	<script th:src="@{/js/slider.js}" src=".../static/js/slider.js"></script>
+	<script th:src="@{/js/menu.js}" src=".../static/js/menu.js"></script>
+</body>
+<footer class="main-footer">
+	<div class="footer__info">
+		<div class="truck__fast">
+			<i class="fa-solid fa-percent fa-2x"></i>
+			<p class="txt_info">LOS MEJORES DECUENTOS</p>
+		</div>
+		<div class="truck__fast">
+			<i class="fas fa-truck-fast fa-fw fa-2x"></i>
+			<p class="txt_info">ENTREGA URGENTE</p>
+		</div>
+		<div class="truck__fast">
+			<i class="fa-solid fa-shield-halved fa-2x"></i>
+			<p class="txt_info">COMPRAS SEGURAS</p>
+		</div>
+		<div class="truck__fast">
+			<i class="fa-solid fa-truck-arrow-right fa-2x"></i>
+			<p class="txt_info">EGASTOS DE ENVÍO GRATIS</p>
+		</div>
+		<div class="truck__fast">
+			<i class="fa-solid fa-credit-card fa-2x"></i>
+			<p class="txt_info">PAGO CON TARJETA DE CRÉDITO</p>
+		</div>
+	</div>
+	<div class="footer__bottom">
+		<div class="footer__section">
+			<h2 class="footer__title">Sobre Nosotros</h2>
+			<p class="footer__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, quaerat quod,
+				voluptas nemo porro sint nostrum, vero reprehenderit in placeat, pariatur enim ab deserunt ut minima
+				eos vitae! Ipsa, beatae?</p>
+		</div>
+		<div class="footer__section">
+			<h2 class="footer__title">Dónde estamos:</h2>
+			<p class="footer__txt">Avenida Inventada de las invenciones, Huelva.</p>
+			<h2 class="footer__title">Contacto</h2>
+			<p class="footer__txt">Teléfono: +34 999 999 999</p>
+			<p class="footer__txt">Email : info-manga@example.com</p>
+		</div>
+		<div class="footer__section">
+			<h2 class="footer__title">Acceso rápido</h2>
+			<a href="" class="footer__link">Home</a>
+			<a href="" class="footer__link">About</a>
+			<a href="" class="footer__link">Error</a>
+			<a href="" class="footer__link">Shop</a>
+			<a href="" class="footer__link">Contact Us</a>
+		</div>
+		<div class="footer__section">
+			<h2 class="footer__title">Subscríbete para recibir las mejores ofertas</h2>
+			<p class="footer__txt">Al suscribirte, siempre recibirás nuestros mejores descuentos, últimas noticias y
+				actualizaciones.</p>
+			<input type="email" class="footer__input" placeholder="Introduzca su e-mal">
+		</div>
+		<p class="copy">© 2022 Todo Manga. Todos los derechos reservados | Diseñada por Juan Camilo Castro Cendales
+		</p>
+	</div>
+
+</footer>
+
+</html>

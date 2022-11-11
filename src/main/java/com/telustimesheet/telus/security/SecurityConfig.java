@@ -28,15 +28,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		/*http.authorizeRequests()
-				.antMatchers("/", "/auth/**", "/public/**", "/css/**", "/js/**", "/home", "/listar", "/uploads/**",
-						"/fonts/**", "/productos", "/sobreNosotros", "/usuario/**", "/productos/listarShonen",
-						"/productos/listarSeinen", "/productos/listar")
+		http.authorizeRequests()
+				.antMatchers("/", "/auth/**", "/public/**", "/css/**", "/js/**", "/home", "/uploads/**",
+						"/fonts/**", "/users/**", "/productos/listarShonen")
 				.permitAll().anyRequest().authenticated()
 
 				.and().formLogin().loginPage("/auth/login").defaultSuccessUrl("/private/index", true)
 				.failureUrl("/auth/login?error=true").loginProcessingUrl("/auth/login-post").permitAll().and().logout()
-				.logoutUrl("/logout").logoutSuccessUrl("/home");*/
+				.logoutUrl("/logout").logoutSuccessUrl("/home");
 	}
 
 }
